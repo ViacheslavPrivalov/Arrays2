@@ -56,7 +56,7 @@ public class Main {
         for (final int pay : arr) {
             sum += pay;
         }
-        double avg = sum / arr.length;
+        double avg = (double) sum / arr.length;
         System.out.println("Средняя сумма трат за месяц составила " + avg + " рублей");
     }
 
@@ -73,7 +73,7 @@ public class Main {
         System.out.println("Extra task 5");
         int[][] matrix = new int[3][3];
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
+            for (int j = 0; j < matrix[i].length; j++) {
                 if ((i + j) % 2 == 0) {
                     matrix[i][j] = 1;
                 } else {
@@ -112,15 +112,20 @@ public class Main {
     }
 
     public static void extraTask8() {
-        System.out.println("Extra task8"); //не понял отличие 8 задачи от 9
+        System.out.println("Extra task8");
         int[] arr = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
         Arrays.sort(arr);
-        for (int i = 0; i < arr.length; i++) {
-            int diff = -2 - arr[i];
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] == diff) {
-                    System.out.println(arr[i] + " " + arr[j]);
-                }
+        int sum = -2;
+        int left = 0;
+        int right = arr.length - 1;
+        while (left != right) {
+            if (arr[left] + arr[right] < sum) {
+                left++;
+            } else if (arr[left] + arr[right] > sum) {
+                right--;
+            } else {
+                System.out.println(arr[left] + " " + arr[right]);
+                break;
             }
         }
     }
